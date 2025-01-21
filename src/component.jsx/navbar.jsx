@@ -3,17 +3,23 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { MdOutlineCancel } from "react-icons/md";
 import { FaUnlockAlt } from "react-icons/fa";
 import { BsPersonPlusFill } from "react-icons/bs";
+import { NavLink } from 'react-router-dom';
+import { LoginMoadl } from '../Modal/Loginmodal';
 export const Navbar = () => {
       const [menuOpen, setMenuOpen] = useState(false);
-
+      const [loginOpen, setLoginOpen] = useState(false);
  
         const toggleMenu = () => {
          setMenuOpen(prevState => !prevState);
           console.log('Menu is open:', menuOpen);
         };
-  
+    const toggleLogin = () => {
+        setLoginOpen(!false)
+        console.log(loginOpen, 'login')
+        
+    }
     return(
-<header className={`flex justify-between items-center fixed top-0 p-4 lg:pl-20 lg:pr-20 z-10 w-full font-poppins `}>
+<header className={`flex justify-between items-center fixed top-0 p-4 lg:pl-20 lg:pr-20 z-10 w-full font-poppins border-b`}>
     {/* Logo/Brand Link */}
     <a className="text-3xl  text-gray-500 p-2" href="/">
         <span>Lost and Found</span>
@@ -38,19 +44,19 @@ export const Navbar = () => {
                 lg:static lg:bg-transparent lg:shadow-none`}
         >
             <li className={`${menuOpen ? 'mb-2' : ''}`}>
-                <a href="#/" className={`text-[#615c61] text-sm  px-3 py-2 transition-colors duration-200 hover:bg-gray-300 `}>Home</a>
+                <NavLink to="/" className={`text-[#615c61] text-sm  px-3 py-2 transition-colors duration-200 hover:bg-gray-300 `}>Home</NavLink>
             </li>
             <li className={`${menuOpen ? 'mb-2' : ''}`}>
-                <a href="#Our mission" className={`text-[#615c61] text-sm text-base  px-3 py-2 transition-colors duration-200 hover:bg-gray-300  `}>Reports</a>
+                <NavLink to="/reports" className={`text-[#615c61] text-sm text-base  px-3 py-2 transition-colors duration-200 hover:bg-gray-300  `}>Reports</NavLink>
             </li>
             <li className={`${menuOpen ? 'mb-3' : ''}`}>
-                <a href="#testimonials" className={`text-[#615c61] text-sm text-base  px-3 py-2 transition-colors duration-200 hover:bg-gray-300  `}>Dashboard</a>
+                <NavLink to="/dashboard" className={`text-[#615c61] text-sm text-base  px-3 py-2 transition-colors duration-200 hover:bg-gray-300  `}>Dashboard</NavLink>
             </li>
             <li className={`${menuOpen ? 'mb-3' : ''}`}>
-                <a href="#pricing" className={`text-[#615c61] text-sm text-base  px-3 py-2 transition-colors duration-200 hover:bg-gray-300  `}>About Us</a>
+                <NavLink to=".about" className={`text-[#615c61] text-sm text-base  px-3 py-2 transition-colors duration-200 hover:bg-gray-300  `}>About Us</NavLink>
             </li>
             <li className={`${menuOpen ? 'mb-3' : ''}`}>
-                <a href="#pricing" className={`text-[#615c61] text-sm text-base  px-3 py-2 transition-colors duration-200 hover:bg-gray-300  `} >Contact Us</a>
+                <NavLink to="/contact" className={`text-[#615c61] text-sm text-base  px-3 py-2 transition-colors duration-200 hover:bg-gray-300  `} >Contact Us</NavLink>
             </li>
         </ul>
     </nav>
@@ -59,13 +65,24 @@ export const Navbar = () => {
     <ul className={`flex ml-auto lg:mr-20 ${menuOpen ? 'hidden' : 'hidden lg:flex'}`}>
         <li className={`${menuOpen ? 'mb-3' : ''}`}>
             <a 
-                href='/#'
+                // href='/#'
+                onClick={toggleLogin}
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="text-[#615c61] inline-flex items-center text-sm  font-poppins   font-semibold px-8 py-3  transition-colors duration-200 hover:bg-gray-300 border border-1 bg-white hover:text-white cursor-pointer"
             >
               <span className='pb-[5px] mr-1'><FaUnlockAlt size={'15px'} /></span>  <span className=''>Login</span>
             </a>
+ <>
+ {loginOpen && ( 
+    <LoginMoadl 
+    loginOpen={loginOpen}
+    setLoginOpen={setLoginOpen}
+    />
+ )}
+ 
+ </>
+
         </li>
         <li className={` px-3${menuOpen ? 'mb-3' : ''}`}>
             <a 

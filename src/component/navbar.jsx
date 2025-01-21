@@ -25,7 +25,7 @@ export const Navbar = () => {
 
     }
     return(
-<header className={`flex justify-between items-center fixed top-0 p-4 lg:pl-20 lg:pr-20 z-10 w-full font-poppins border-b`}>
+<header className={`flex justify-between z-100 items-center fixed top-0 p-4 lg:pl-20 lg:pr-20 z-10 w-full font-poppins border-b`}>
     {/* Logo/Brand Link */}
     <a className="text-3xl  text-gray-500 p-2" href="/">
         <span>Lost and Found</span>

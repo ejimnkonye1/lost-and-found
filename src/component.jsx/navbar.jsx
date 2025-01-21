@@ -4,19 +4,25 @@ import { MdOutlineCancel } from "react-icons/md";
 import { FaUnlockAlt } from "react-icons/fa";
 import { BsPersonPlusFill } from "react-icons/bs";
 import { NavLink } from 'react-router-dom';
-import { LoginMoadl } from '../Modal/Loginmodal';
+import {  LoginModal } from '../Modal/Loginmodal';
+import { RegitserModal } from '../Modal/regitsermodal';
 export const Navbar = () => {
       const [menuOpen, setMenuOpen] = useState(false);
       const [loginOpen, setLoginOpen] = useState(false);
+      const [registerOpen, setRegiserOpen] = useState(false)
  
         const toggleMenu = () => {
          setMenuOpen(prevState => !prevState);
           console.log('Menu is open:', menuOpen);
         };
     const toggleLogin = () => {
-        setLoginOpen(!false)
+        setLoginOpen(prevState => !prevState)
         console.log(loginOpen, 'login')
         
+    }
+    const toggleRegister = () => {
+        setRegiserOpen(prevState => !prevState)
+
     }
     return(
 <header className={`flex justify-between items-center fixed top-0 p-4 lg:pl-20 lg:pr-20 z-10 w-full font-poppins border-b`}>
@@ -75,18 +81,27 @@ export const Navbar = () => {
             </a>
  <>
  {loginOpen && ( 
-    <LoginMoadl 
+    <LoginModal
     loginOpen={loginOpen}
     setLoginOpen={setLoginOpen}
     />
+
  )}
+     {registerOpen && (
+        <RegitserModal
+        registerOpen={registerOpen}
+        setRegiserOpen={setRegiserOpen} 
+        
+        />
+    )}
  
  </>
 
         </li>
         <li className={` px-3${menuOpen ? 'mb-3' : ''}`}>
             <a 
-                href='/#'
+                // href='/#'
+                onClick={toggleRegister}
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="text-[#615c61] p-5 inline-flex items-center text-sm  font-poppins   font-semibold px-8 py-3  transition-colors duration-200 hover:bg-gray-300 border border-1 bg-white hover:text-white cursor-pointer"

@@ -6,6 +6,8 @@ import { BsPersonPlusFill } from "react-icons/bs";
 import { NavLink } from 'react-router-dom';
 import {  LoginModal } from '../Modal/Loginmodal';
 import { RegitserModal } from '../Modal/regitsermodal';
+import { IoIosLogIn } from "react-icons/io";
+import { IoPersonAddOutline } from "react-icons/io5";
 export const Navbar = () => {
       const [menuOpen, setMenuOpen] = useState(false);
       const [loginOpen, setLoginOpen] = useState(false);
@@ -25,14 +27,29 @@ export const Navbar = () => {
 
     }
     return(
-<header className={`flex justify-between z-100 items-center fixed top-0 p-4 lg:pl-20 lg:pr-20 z-10 w-full font-poppins border-b`}>
+<header className={`flex justify-between z-50 items-center fixed top-0 p-4 lg:pl-20 lg:pr-20 z-10 w-full font-poppins border-b `}>
     {/* Logo/Brand Link */}
-    <a className="text-3xl  text-gray-500 p-2" href="/">
+    <a className="lg:text-3xl text-2xl text-start   text-gray-500 p-2" href="/">
         <span>Lost and Found</span>
     </a>
 
     {/* Navigation Container */}
     <nav className="flex-grow flex justify-end lg:justify-center relative">
+<>
+<button 
+            className="block lg:hidden pr-5 bg-transparent border-none cursor-pointer z-30" 
+        >
+     <IoIosLogIn size={20} />
+      
+        </button>
+        <button 
+            className="block lg:hidden pr-5 bg-transparent border-none cursor-pointer z-30" 
+        >
+            < IoPersonAddOutline size={20} />
+      
+        </button>
+</>
+
         <button 
             className="block lg:hidden bg-transparent border-none cursor-pointer z-30" 
             onClick={toggleMenu}
@@ -43,6 +60,8 @@ export const Navbar = () => {
                 <RxHamburgerMenu className="text-black text-2xl" /> // Change color if needed
             )}
         </button>
+       
+      
 
         <ul 
             className={`flex-col lg:flex-row items-center m-2 p-2 transition-all duration-300 flex justify-center 

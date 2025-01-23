@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 export const Footer = () => {
     return (
-        <footer>
+        <footer className="pt-20">
             <div className="border-t p-4 lg:pl-20 lg:pr-20 ">
             <div className="flex justify-center items-center">
             <nav>
@@ -10,7 +10,7 @@ export const Footer = () => {
                     <li>
                         <NavLink 
                             to='/' 
-                            className='text-[#615c61] text-sm text-base px-3 py-2 transition-colors duration-200 hover:bg-gray-400'
+                            className='text-[#615c61] text-sm text-base px-3 py-2 transition-colors duration-200 hover:bg-gray-300'
                         >
                             Terms and Conditions
                         </NavLink>
@@ -18,7 +18,7 @@ export const Footer = () => {
                     <li>
                         <NavLink
                             to='/' 
-                            className='text-[#615c61] text-sm text-base px-3 py-2 transition-colors duration-200 hover:bg-gray-400'
+                            className='text-[#615c61] text-sm text-base px-3 py-2 transition-colors duration-200 hover:bg-gray-300'
                         >
                             Privacy Policy
                         </NavLink>

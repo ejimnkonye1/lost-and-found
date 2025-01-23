@@ -27,7 +27,7 @@ export const Navbar = () => {
 
     }
     return(
-<header className={`flex justify-between z-50 items-center fixed top-0 p-4 lg:pl-20 lg:pr-20 z-10 w-full font-poppins border-b `}>
+<header className={`flex justify-between z-50 items-center fixed top-0 p-4 lg:pl-20 lg:pr-20 z-10 w-full font-poppins border-b bg-white `}>
     {/* Logo/Brand Link */}
     <a className="lg:text-3xl text-2xl text-start   text-gray-500 p-2" href="/">
         <span>Lost and Found</span>
@@ -69,19 +69,20 @@ export const Navbar = () => {
                 lg:static lg:bg-transparent lg:shadow-none`}
         >
             <li className={`${menuOpen ? 'mb-2' : ''}`}>
-                <NavLink to="/" className={`text-[#615c61] text-sm  px-3 py-2 transition-colors duration-200 hover:bg-gray-300 `}>Home</NavLink>
+                <NavLink to="/" className={ ({isActive}) => ` ${isActive ? 'text-[#FEA116] ':'hover:bg-gray-300'}   text-[#615c61] text-sm  px-3 py-2 transition-colors duration-200  `}>Home</NavLink>
             </li>
+            
             <li className={`${menuOpen ? 'mb-2' : ''}`}>
-                <NavLink to="/reports" className={`text-[#615c61] text-sm text-base  px-3 py-2 transition-colors duration-200 hover:bg-gray-300  `}>Reports</NavLink>
+                <NavLink to="/reports"  className={ ({isActive}) => ` ${isActive ? 'text-[#FEA116] ':'hover:bg-gray-300'}   text-[#615c61] text-sm  px-3 py-2 transition-colors duration-200  `}>Reports</NavLink>
             </li>
             <li className={`${menuOpen ? 'mb-3' : ''}`}>
-                <NavLink to="/dashboard" className={`text-[#615c61] text-sm text-base  px-3 py-2 transition-colors duration-200 hover:bg-gray-300  `}>Dashboard</NavLink>
+                <NavLink to="/dashboard" className={({isActive}) => `${isActive? 'text-[#FEA116]':'hover:bg-gray-300'} text-[#615c61] text-sm text-base  px-3 py-2 transition-colors duration-200  `}>Dashboard</NavLink>
             </li>
             <li className={`${menuOpen ? 'mb-3' : ''}`}>
-                <NavLink to=".about" className={`text-[#615c61] text-sm text-base  px-3 py-2 transition-colors duration-200 hover:bg-gray-300  `}>About Us</NavLink>
+                <NavLink to="/about" className={({isActive}) =>` ${isActive ? 'text-[#FEA116]' :'hover:bg-gray-300'} text-[#615c61] text-sm text-base  px-3 py-2 transition-colors duration-200  `}>About Us</NavLink>
             </li>
             <li className={`${menuOpen ? 'mb-3' : ''}`}>
-                <NavLink to="/contact" className={`text-[#615c61] text-sm text-base  px-3 py-2 transition-colors duration-200 hover:bg-gray-300  `} >Contact Us</NavLink>
+                <NavLink to="/contact" className={({isActive}) => ` ${isActive ?'text-[#FEA116]':'hover:bg-gray-300'} text-[#615c61] text-sm text-base  px-3 py-2 transition-colors duration-200  `} >Contact Us</NavLink>
             </li>
         </ul>
     </nav>

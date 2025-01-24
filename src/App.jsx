@@ -9,6 +9,7 @@ import { ResetPassword } from "./pages/resetpassword"
 import { Login } from "./pages/login"
 import { Regitser } from "./pages/register"
 import { Footer } from "./component/footer"
+import { ReportDetails } from "./pages/reportdetails"
 
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
         <Route path='/resetpassword' element={<ResetPassword />}    />
         <Route path='/login' element={<Login />}    />
         <Route path='/register' element={<Regitser />}    />
-     
+        <Route path='/details/:id' element={<ReportDetails />}    />
       </Routes> 
 
       <Footer />

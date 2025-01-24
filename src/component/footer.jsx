@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 export const Footer = () => {
+
     return (
         <footer className="pt-20">
             <div className="border-t p-4 lg:pl-20 lg:pr-20 ">
@@ -138,7 +139,7 @@ export const Footer = () => {
 
               </div>
               <div className="text-center">
-                <p className="text-[#615c61] text-sm text-base ">Ⓒ 2025 The Lost and found Website. Built By <a className="text-[#fe8116]" href="/"target="-blank" >Billie</a></p>
+                <p className="text-[#615c61] text-sm text-base ">Ⓒ {new Date().getFullYear()} The Lost and found Website. Built By <a className="text-[#fe8116]" href="/"target="-blank" >Billie</a></p>
                 </div>
                 
             </div>

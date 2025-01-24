@@ -1,71 +1,25 @@
 import {  InputLabel, MenuItem, Select, TextField } from "@mui/material"
-import img1 from '../assets/img.webp'
+
 import { IoIosSearch } from "react-icons/io";
 import { useState } from "react";
-const Report= [
-    {
-        name: 'Lost Wallet – Sarah Johnson',
-        image: img1,
-        date: '15/10/2024',
-        location: 'Lagos, Victoria Island'
-    },
-    {
-        name: 'Lost Wallet – Sarah Johnson',
-        image: img1,
-        date: '15/10/2024',
-        location: 'Lagos, Victoria Island'
-    },
-    {
-        name: 'Found Keys – John Doe',
-        image: img1,
-        date: '14/10/2024',
-        location: 'Abuja, Central Area'
-    },
-    {
-        name: 'Lost Phone – Mary Smith',
-        image: img1,
-        date: '13/10/2024',
-        location: 'Kano, Sabon Gari'
-    },
-    {
-        name: 'Found Glasses – David Brown',
-        image: img1,
-        date: '12/10/2024',
-        location: 'Port Harcourt, GRA'
-    },
-    {
-        name: 'Lost Backpack – Emily Davis',
-        image: img1,
-        date: '11/10/2024',
-        location: 'Ibadan, Bodija'
-    },
-    // {
-    //     name: 'Found Watch – Michael Wilson',
-    //     image: img1,
-    //     date: '10/10/2024',
-    //     location: 'Enugu, New Haven'
-    // },
-    // {
-    //     name: 'Lost Ring – Jessica Taylor',
-    //     image: img1,
-    //     date: '09/10/2024',
-    //     location: 'Owerri, Wetheral Road'
-    // },
-    // {
-    //     name: 'Found Book – Daniel Anderson',
-    //     image: img1,
-    //     date: '08/10/2024',
-    //     location: 'Benin City, Ring Road'
-    // },
-    // {
-    //     name: 'Lost Jacket – Laura Martinez',
-    //     image: img1,
-    //     date: '07/10/2024',
-    //     location: 'Abuja, Wuse'
-    // },
-];
+import { Report } from "../component/reportarray";
+import { Link } from "react-router-dom";
 export const Reports = () => {
     const [filter, setfilter] = useState(null)
+    const Formatstring = (input) => {
+        if (typeof input !== 'string') {
+            console.warn('Input is not a valid string:', input);
+            return ''; 
+        }
+        // Check if the input length exceeds 100 characters
+        if (input.length > 100) {
+           
+            const letter = input.slice(0, 90);
+            return `${letter}...`;
+        } else {
+            return input; // Return the original input if it's 100 characters or less
+        }
+    };
     return(
         <>
    <div className='pt-20 z-10'>
@@ -118,18 +72,20 @@ export const Reports = () => {
   
        
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-10 gap-[70px]"> 
-      {Report.map((report, index) => (
-          <div key={index} className="">     
-              <div className="relative flex w-80 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
-                  <div className="relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl  bg-clip-border text-white shadow-lg ">
-                      <img src={report.image} className="w-full h-full object-cover" /> {/* Ensure uniformity */}
+      {Report.map((report, id) => (
+          <div key={id} className="">     
+              <div className="relative flex w-80 h-[350px] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+                  <div className="relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl  bg-clip-border text-white shadow-lg " >
+                    <Link to={`/details/${report.id}`}>
+                      <img src={report.image} className="w-full h-full object-cover" /> 
+                     </Link>
                   </div>
                   <div className="p-6">
                       <h5 className="text-[#615c61] lg:text-lg text-[15px] block font-sans font-semibold leading-snug tracking-normal mb-2 font-semibold antialiased">
                           {report.name}
                       </h5>
                       <p className="block font-sans text-base font-light leading-relaxed text-inherit antialiased">
-                      A file holder/bag was found along Pharmacy works road this morning by a student
+          {Formatstring(report.description)}
       </p>
                    
                   </div>

@@ -1,11 +1,47 @@
 import {  FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material"
 
 import { IoIosSearch } from "react-icons/io";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Report } from "../component/reportarray";
 import { Link } from "react-router-dom";
 export const Reports = () => {
-    const [filter, setfilter] = useState(null)
+const [filterLocation, setFilterLocation] = useState(null)
+const [filterReport, setFilterReport] = useState([])
+const [query , setQuery] = useState()
+const [searchError, setSearchError] = useState()
+
+
+const handleLocation = (location) => {
+    setFilterLocation(location)
+    FilterReport(query, location)
+}
+const handleSearch = (query) => {
+    setQuery(query)
+    FilterReport(query, filterLocation)
+}
+
+const FilterReport = (query, location) => {
+   
+        const filter = Report.filter((report) =>{
+         const searchResult =   report.name?.toLowerCase().includes(query.toLowerCase()) ||
+           report.description?.toLowerCase().includes(query.toLowerCase()) ||
+           report.location?.toLowerCase().includes(query.toLowerCase()) 
+         const locationResult = location ? report.location?.toLocaleLowerCase() === location?.toLocaleLowerCase(): true;
+           return searchResult && locationResult
+    })
+   
+         setFilterReport(filter)
+         setSearchError(filter.length === 0)
+
+
+}
+
+
+// make the component mount intially
+useEffect(() => {
+setFilterReport(Report)
+},[])
+
     const Formatstring = (input) => {
         if (typeof input !== 'string') {
             console.warn('Input is not a valid string:', input);
@@ -25,7 +61,7 @@ export const Reports = () => {
    <div className='pt-20 z-10'>
              
         <div className="flex flex-col justify-center items-center lg:pt-[45px] py-5">
-        <h3 className="lg:text-3xl font-poppins font-bold text-xl lg:text-start text-center   text-gray-500 p-2" >
+        <h3 className="lg:text-3xl font-poppins font-bold text-md lg:text-start text-center   text-gray-500 p-2" >
           <span>Search our database for your missing property</span>
       </h3>
 
@@ -40,6 +76,8 @@ export const Reports = () => {
               fullWidth
               label='Search..'
               className=""
+              value={query}
+              onChange={(e)=> handleSearch(e.target.value)}
               
               />
               <div className="relative flex pr-5 justify-end top-[-40px] down-20">
@@ -60,14 +98,14 @@ export const Reports = () => {
                 <Select
                     labelId="filter-label"
                     displayEmpty
-                    value={filter}
-                    onChange={(e) => setfilter(e.target.value)}
+                    value={filterLocation}
+                    onChange={(e) => handleLocation(e.target.value)}
                     label="Select Location"
                 >
                     <MenuItem value="" disabled>Select</MenuItem>
-                    <MenuItem value="Mtn Stand">Mtn Stand</MenuItem>
-                    <MenuItem value="Fans Faculty">Fans Faculty</MenuItem>
-                    <MenuItem value="Library">Library</MenuItem>
+                    <MenuItem value='Mtn Stand' >Mtn Stand</MenuItem>
+                    <MenuItem value='Fans Faculty'>Fans Faculty</MenuItem>
+                    <MenuItem value='Hall C' >Hall C</MenuItem>
                     <MenuItem value="Cafeteria">Cafeteria</MenuItem>
                 </Select>
             </FormControl>
@@ -76,7 +114,11 @@ export const Reports = () => {
 
        
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-10 gap-[70px] "> 
-      {Report.map((report, id) => (
+    {searchError ? (
+    <p>no result found</p>    
+    ):(
+        <>
+           {filterReport.map((report, id) => (
           <div key={id} className="flex justify-center items-center">     
               <div className="relative flex w-80 h-[350px] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
                   <div className="relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl  bg-clip-border text-white shadow-lg " >
@@ -101,6 +143,9 @@ export const Reports = () => {
               </div>
           </div>
       ))}
+        </>
+    )}
+   
   </div>
   
   

@@ -1,37 +1,33 @@
 import {  TextField } from "@mui/material"
-
 import { IoIosSearch } from "react-icons/io";
 import { Report } from "../component/reportarray";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export const Home = () => {
-    const navigate = useNavigate()
-const [filterreport, setfilterreport] = useState([])
-const [query , setquery] = useState()
+const navigate = useNavigate()
+const [filterReport, setFilterReport] = useState([])
+const [query , setQuery] = useState()
 const [searchError, setSearchError] = useState()
 const handleSearch = (query) => {
-    setquery(query)
+    setQuery(query)
     if(query){
-       
         const filter = Report.filter((report) =>
             report.name?.toLowerCase().includes(query.toLowerCase()) ||
            report.description?.toLowerCase().includes(query.toLowerCase()) ||
            report.location?.toLowerCase().includes(query.toLowerCase()) 
-        
         )
-         setfilterreport(filter)
+         setFilterReport(filter)
          setSearchError(filter.length === 0)
-         
     } else{
-       setfilterreport(Report)
+       setFilterReport(Report)
        setSearchError(false)
     }
 
 }
 // make the component mount intially
 useEffect(() => {
-setfilterreport(Report)
+setFilterReport(Report)
 },[])
 const allreportbtn = () => {
     navigate('/reports')
@@ -88,8 +84,8 @@ const Formatstring = (input) => {
     <p className="text-center "> No results found</p>
     ): (
         <>
-          {filterreport.map((report, id) => (
-        <div key={id} className="">     
+          {filterReport.map((report, id) => (
+        <div key={id} className="flex justify-center items-center">     
             <div className="relative flex w-80 h-[350px] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
                 <div className="relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl  bg-clip-border text-white shadow-lg ">
                 <Link to={`/details/${report.id}`}>

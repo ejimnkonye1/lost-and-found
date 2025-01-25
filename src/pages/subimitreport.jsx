@@ -1,56 +1,12 @@
-import { Box, Typography, TextField,  Card, CardContent, List, ListItem, ListItemText, Divider, FormGroup, FormControlLabel, Checkbox,  } from "@mui/material";
+import { Box, Typography, TextField,  Card, CardContent, List, ListItem, ListItemText, Divider, FormGroup, FormControlLabel, Checkbox, } from "@mui/material";
 
 
-export const Dashboard = () => {
+export const SubmitReports = () => {
     return(
         <>
         <div className='pt-20 z-10'>
            
            <div className="flex flex-col justify-center items-center lg:pt-[45px] pr-[100px] pl-[180px] py-5 p-5">
-           {/* <section className="flex   w-[100%]">
-        <section className="lg:w-[20%] h-auto">
-        <div className="bg-white p-4 flex flex-col gap-4 shadow-xl rounded-xl h-auto ">
-        <ul className="py-2 text-sm text-gray-700 dark:text-gray-200 pt-10" >
-      <li>
-        <a href="/dashboard/my-reports/" className="block px-4 py-2 text-[#615c61] text-[18px] font-poppins text-nowrap p-20  transition-colors  mb-8 ">My Reports</a>
-      </li>
-      <li>
-        <a href="dashboard/submit-report/" className="block px-4 py-2 text-[18px] font-poppins text-nowrap text-[#615c61] transition-colors mb-8">Submit Reports</a>
-      </li>
-      <li>
-        <a href="/dashboard/edit-report/" className="block px-4 py-2 text-[#615c61] text-[18px] font-poppins text-nowrap transition-colors ">Edit Report</a>
-      </li>
-   
-    </ul>
-    </div>
-        </section>
-
-
-        <section className="flex-grow lg:w-[75%]">
-
-       
-    <div className="flex-grow bg-gray-400 rounded-xl p-4 w-full">
-        <div className="mb-4">
-            <label htmlFor="reportTitle" className="block text-gray-700 font-bold mb-2">Report Title*</label>
-            <input type="text" id="reportTitle" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter Report Title" />
-            <p className="text-gray-500 text-sm">This should contain the title of the property you're reporting.</p>
-        </div>
-        <div className="mb-4">
-            <label htmlFor="image" className="block text-gray-700 font-bold mb-2">Image*</label>
-            <input type="file" id="image" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Upload an image" />
-            <p className="text-gray-500 text-sm">Please upload a relevant image for your report.</p>
-        </div>
-        <div className="mb-4">
-            <label htmlFor="description" className="block text-gray-700 font-bold mb-2">Description*</label>
-            <textarea id="description" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" rows="4" placeholder="Enter a detailed description of the report"></textarea>
-            <p className="text-gray-500 text-sm">Provide as much detail as possible.</p>
-        </div>
-        <div className="flex justify-end">
-            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Save Report</button>
-        </div>
-    </div>
-    </section>
-</section> */}
 
     <Box display="flex" width="100%" p={2} bgcolor="#" minHeight="100vh">
       {/* Sidebar */}

@@ -91,13 +91,13 @@ export const Navbar = () => {
 <div id="dropdownDelay" className={`absolute left-25 mt-0 w-48 bg-white divide-y divide-gray-100 rounded-lg shadow ${openDropDown ? 'block' : 'hidden'}`}>
     <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDelayButton">
       <li>
-        <a href="/dashboard/my-reports/" className="block px-4 py-2 text-[#615c61] text-sm  transition-colors duration-200 hover:bg-gray-300 ">My Reports</a>
+        <a href="/dashboard/my-reports" className="block px-4 py-2 text-[#615c61] text-sm  transition-colors duration-200 hover:bg-gray-300 ">My Reports</a>
       </li>
       <li>
-        <a href="dashboard/submit-report/" className="block px-4 py-2 text-[#615c61] text-sm transition-colors duration-200 hover:bg-gray-300 ">Submit Reports</a>
+        <a href="/dashboard/submit-report" className="block px-4 py-2 text-[#615c61] text-sm transition-colors duration-200 hover:bg-gray-300 ">Submit Reports</a>
       </li>
       <li>
-        <a href="/dashboard/edit-report/" className="block px-4 py-2 text-[#615c61] text-sm transition-colors duration-200 hover:bg-gray-300 ">Edit Report</a>
+        <a href="/dashboard/edit-report" className="block px-4 py-2 text-[#615c61] text-sm transition-colors duration-200 hover:bg-gray-300 ">Edit Report</a>
       </li>
       <li>
         <a href="#" className="block px-4 py-2 text-[#615c61] text-sm transition-colors duration-200 hover:bg-gray-300 ">Sign out</a>

@@ -10,6 +10,9 @@ import { Login } from "./pages/login"
 import { Regitser } from "./pages/register"
 import { Footer } from "./component/footer"
 import { ReportDetails } from "./pages/reportdetails"
+import { Myreport } from "./pages/myreports"
+import { SubmitReports } from "./pages/subimitreport"
+import { EditReports } from "./pages/editreport"
 
 
 function App() {
@@ -34,6 +37,9 @@ function App() {
         <Route path='/contact' element={<Contact />}    />
         <Route path='/about' element={<About />}    />
         <Route path='/dashboard' element={<Dashboard />}    />
+        <Route path='/dashboard/my-reports' element={<Myreport />}    />
+        <Route path='/dashboard/submit-report' element={<SubmitReports />}    />
+        <Route path='/dashboard/edit-report' element={<EditReports />}  />
         <Route path='/resetpassword' element={<ResetPassword />}    />
         <Route path='/login' element={<Login />}    />
         <Route path='/register' element={<Regitser />}    />

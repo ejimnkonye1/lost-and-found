@@ -7,7 +7,7 @@ import img6 from '../assets/img5.jpeg'
  export const Report= [
     {
         id: 0,
-        name: 'Lost Wallet – Sarah Johnson',
+        name: 'Found Lost File Holder',
         image: img1,
         date: '15/10/2024',
         location: 'Lagos, Victoria Island',

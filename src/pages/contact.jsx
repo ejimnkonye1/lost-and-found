@@ -8,59 +8,61 @@ export const Contact = () => {
         <>
   <div className='pt-20 z-10'>
            
-      <div className="flex flex-col justify-center items-center lg:pt-[45px] py-5">
+      <div className="flex flex-col justify-center items-center lg:pt-[45px] py-5 p-5">
       <h3 className="lg:text-3xl font-poppins font-bold text-2xl text-start   text-gray-500 p-2" >
         <span>Contact Us</span>
     </h3>
-    <p className="font-poppins text-md text-[#615c61] pt-5">We are always available to receive and attend to your message.</p>
+    <p className="font-poppins lg:text-md text-sm text-center max-w-md max-w-xl text-[#615c61] pt-5">We are always available to receive and attend to your message.</p>
       </div>
-        
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-10 gap-[70px] p-10"> 
+        <div className="flex justify-center items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-10 gap-[70px] lg:p-10 p-4"> 
 
        
-            <div className="relative flex w-80 flex-col rounded-xl bg-white  text-gray-700 shadow-lg  flex items-center justify-center ">
-                <div className="relative mx-4 -mt-6 h-[60px]  w-20 overflow-hidden rounded-xl   bg-[#f0f0f0] text-white shadow flex items-center justify-center ">
-                       <FaPhoneAlt color="#fe8116 " size={'30'} />
-                </div>
-                <div className="p-6">
-              
-                    <p className="block font-poppins text-md text-[#615c61] text-base  leading-relaxed text-inherit antialiased text-center">
-                    +234 807 765 1513
-    </p>
-                 
-                </div>
- 
-            </div>
-            <div className="relative flex w-80 flex-col rounded-xl bg-white  text-gray-700 shadow-lg  flex items-center justify-center ">
-                <div className="relative mx-4 -mt-6 h-[60px] w-20 overflow-hidden rounded-xl   bg-[#f0f0f0] text-white shadow flex items-center justify-center ">
-                  
-                       <MdEmail color="#fe8116 " size={'30'}  />
-                </div>
-                <div className="p-6">
-              
-                    <p className="block font-poppins text-md  text-base text-[#fe8116]  leading-relaxed  text-center">
-                     ejimnkonyeonyedika@gmail.com
-    </p>
-                 
-                </div>
- 
-            </div>
-            <div className="relative flex w-80 flex-col rounded-xl bg-white  text-gray-700 shadow-lg  flex items-center justify-center ">
-                <div className="relative mx-4 -mt-6  h-[60px]  w-20 overflow-hidden rounded-xl   bg-[#f0f0f0] text-white shadow flex items-center justify-center ">
-                
-                       <CiLocationOn color="#fe8116 " size={'30'} />
-                </div>
-                <div className="p-6">
-              
-                    <p className="block font-poppins text-md text-[#615c61] text-base  leading-relaxed text-inherit antialiased text-center">
-                    Enugu State
-    </p>
-                 
-                </div>
- 
-            </div>
+<div className="relative flex w-80 flex-col rounded-xl bg-white  text-gray-700 shadow-lg  flex items-center justify-center ">
+    <div className="relative mx-4 -mt-6 h-[60px]  w-20 overflow-hidden rounded-xl   bg-[#f0f0f0] text-white shadow flex items-center justify-center ">
+           <FaPhoneAlt color="#fe8116 " size={'30'} />
+    </div>
+    <div className="p-6">
   
+        <p className="block font-poppins text-md text-[#615c61] text-base  leading-relaxed text-inherit antialiased text-center">
+        +234 807 765 1513
+</p>
+     
+    </div>
+
 </div>
+<div className="relative flex w-80 flex-col rounded-xl bg-white  text-gray-700 shadow-lg  flex items-center justify-center ">
+    <div className="relative mx-4 -mt-6 h-[60px] w-20 overflow-hidden rounded-xl   bg-[#f0f0f0] text-white shadow flex items-center justify-center ">
+      
+           <MdEmail color="#fe8116 " size={'30'}  />
+    </div>
+    <div className="p-6">
+  
+        <p className="block font-poppins text-md  text-base text-[#fe8116]  leading-relaxed  text-center">
+         ejimnkonyeonyedika@gmail.com
+</p>
+     
+    </div>
+
+</div>
+<div className="relative flex w-80 flex-col rounded-xl bg-white  text-gray-700 shadow-lg  flex items-center justify-center ">
+    <div className="relative mx-4 -mt-6  h-[60px]  w-20 overflow-hidden rounded-xl   bg-[#f0f0f0] text-white shadow flex items-center justify-center ">
+    
+           <CiLocationOn color="#fe8116 " size={'30'} />
+    </div>
+    <div className="p-6">
+  
+        <p className="block font-poppins text-md text-[#615c61] text-base  leading-relaxed text-inherit antialiased text-center">
+        Enugu State
+</p>
+     
+    </div>
+
+</div>
+
+</div>
+
+        </div>
 
 <div className="flex flex-col justify-center items-center lg:pt-[45px] py-5">
 <h3 className="lg:text-3xl font-poppins  text-2xl text-start   text-gray-500 p-2" >

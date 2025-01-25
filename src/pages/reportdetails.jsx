@@ -10,7 +10,7 @@ export const ReportDetails = () => {
         return 'No report Found'
     }
 const formatDate = (dateString) => {
-    const [day, month, year] = dateString.split('/').map(Number)
+    const [day, month, year] = dateString.split(/[/-]/).map(Number)
     const date = new Date(year, month -1, day)
 
     const option ={year: 'numeric', month:'long', day:'numeric'}
@@ -25,7 +25,7 @@ const formatDate = (dateString) => {
                <span>{report.name } ({report.location})</span>
            </h3>
            <div className="pt-7">
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 pt-2 gap-6 border-t pl-[100px] p-10"> 
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 pt-2 gap-6 border-t lg:pl-[100px] lg:p-10 p-5"> 
           <div className="flex flex-col pt-5">
            <p className="font-poppins lg:text-md text-sm text-[#615c61] mb-4">Reported on {formatDate(report.date)} By Lost and Found
            </p>

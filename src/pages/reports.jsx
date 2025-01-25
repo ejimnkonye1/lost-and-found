@@ -1,4 +1,4 @@
-import {  InputLabel, MenuItem, Select, TextField } from "@mui/material"
+import {  FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material"
 
 import { IoIosSearch } from "react-icons/io";
 import { useState } from "react";
@@ -25,7 +25,7 @@ export const Reports = () => {
    <div className='pt-20 z-10'>
              
         <div className="flex flex-col justify-center items-center lg:pt-[45px] py-5">
-        <h3 className="lg:text-3xl font-poppins font-bold text-2xl text-start   text-gray-500 p-2" >
+        <h3 className="lg:text-3xl font-poppins font-bold text-xl lg:text-start text-center   text-gray-500 p-2" >
           <span>Search our database for your missing property</span>
       </h3>
 
@@ -50,30 +50,34 @@ export const Reports = () => {
             </div>
               
             <div className="p-5 lg:pr-[120px] lg:pl-[120px]">
-          <div className="flex justify-between w-[30%]">
-          <h3 className="mb-5 lg:text-2xl font-poppins font-normal text-1xl text-start   text-gray-500 p-2">Filter Location?</h3>
-          <div>
-          <InputLabel id="filter-label">Select</InputLabel>
-            <Select
-              labelId="filter-label"
-                displayEmpty
-            fullWidth
-            aria-placeholder="select"
-           value={filter}
-             onChange={(e) => setfilter(e.target.value)}
-            >  
-                     <MenuItem value='' disabled >Select</MenuItem>
-                <MenuItem value='Mtn stand' >Mtn Stand</MenuItem>
-                <MenuItem value='Fans Faculty' >Fans Faculty</MenuItem>
-            </Select>
-          </div>
+        <div className="flex flex-col lg:flex-row justify-between items-center w-full p-4  rounded-lg">
+            <h3 className="mb-4 lg:mb-0 lg:text-xl text-nowrap font-poppins mr-3  text-gray-500">
+                Filter Location?
+            </h3>
+         
+         <FormControl fullWidth variant="outlined">
+                <InputLabel id="filter-label">Select Location</InputLabel>
+                <Select
+                    labelId="filter-label"
+                    displayEmpty
+                    value={filter}
+                    onChange={(e) => setfilter(e.target.value)}
+                    label="Select Location"
+                >
+                    <MenuItem value="" disabled>Select</MenuItem>
+                    <MenuItem value="Mtn Stand">Mtn Stand</MenuItem>
+                    <MenuItem value="Fans Faculty">Fans Faculty</MenuItem>
+                    <MenuItem value="Library">Library</MenuItem>
+                    <MenuItem value="Cafeteria">Cafeteria</MenuItem>
+                </Select>
+            </FormControl>
+         
+        </div>
 
-          </div>
-  
        
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-10 gap-[70px]"> 
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-10 gap-[70px] "> 
       {Report.map((report, id) => (
-          <div key={id} className="">     
+          <div key={id} className="flex justify-center items-center">     
               <div className="relative flex w-80 h-[350px] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
                   <div className="relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl  bg-clip-border text-white shadow-lg " >
                     <Link to={`/details/${report.id}`}>

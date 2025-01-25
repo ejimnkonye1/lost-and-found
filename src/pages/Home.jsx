@@ -1,16 +1,55 @@
 import {  TextField } from "@mui/material"
-import img1 from '../assets/img.webp'
+
 import { IoIosSearch } from "react-icons/io";
-// import { CiLocationOn } from "react-icons/ci";
-// import { FaRegCalendarPlus } from "react-icons/fa";
 import { Report } from "../component/reportarray";
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export const Home = () => {
     const navigate = useNavigate()
+const [filterreport, setfilterreport] = useState([])
+const [query , setquery] = useState()
+const [searchError, setSearchError] = useState()
+const handleSearch = (query) => {
+    setquery(query)
+    if(query){
+       
+        const filter = Report.filter((report) =>
+            report.name?.toLowerCase().includes(query.toLowerCase()) ||
+           report.description?.toLowerCase().includes(query.toLowerCase()) ||
+           report.location?.toLowerCase().includes(query.toLowerCase()) 
+        
+        )
+         setfilterreport(filter)
+         setSearchError(filter.length === 0)
+         
+    } else{
+       setfilterreport(Report)
+       setSearchError(false)
+    }
+
+}
+// make the component mount intially
+useEffect(() => {
+setfilterreport(Report)
+},[])
 const allreportbtn = () => {
     navigate('/reports')
 }
+const Formatstring = (input) => {
+    if (typeof input !== 'string') {
+        console.warn('Input is not a valid string:', input);
+        return ''; 
+    }
+    // Check if the input length exceeds 100 characters
+    if (input.length > 100) {
+       
+        const letter = input.slice(0, 90);
+        return `${letter}...`;
+    } else {
+        return input; // Return the original input if it's 100 characters or less
+    }
+};
     return(
         <div className='pt-20 z-10'>
            
@@ -29,7 +68,8 @@ const allreportbtn = () => {
             fullWidth
             label='Search..'
             className=""
-            
+            value={query}
+            onChange={(e) => handleSearch(e.target.value)}
             />
             <div className="relative flex pr-5 justify-end top-[-40px] down-20">
            <span><IoIosSearch  size={'25'}/> </span> 
@@ -44,8 +84,12 @@ const allreportbtn = () => {
 
      
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-10 gap-[70px]"> 
-    {Report.map((report, index) => (
-        <div key={index} className="">     
+    {searchError ?(
+    <p className="text-center "> No results found</p>
+    ): (
+        <>
+          {filterreport.map((report, id) => (
+        <div key={id} className="">     
             <div className="relative flex w-80 h-[350px] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
                 <div className="relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl  bg-clip-border text-white shadow-lg ">
                 <Link to={`/details/${report.id}`}>
@@ -57,7 +101,7 @@ const allreportbtn = () => {
                         {report.name}
                     </h5>
                     <p className="block font-sans text-base font-light leading-relaxed text-inherit antialiased">
-                    A file holder/bag was found along Pharmacy works road this morning by a student
+            { Formatstring (report.description)}
     </p>
                  
                 </div>
@@ -69,6 +113,9 @@ const allreportbtn = () => {
             </div>
         </div>
     ))}
+        </>
+)}
+  
 </div>
 
 

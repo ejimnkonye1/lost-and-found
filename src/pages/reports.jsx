@@ -74,10 +74,12 @@ setFilterReport(Report)
                   
               <TextField 
               fullWidth
-              label='Search..'
+            
               className=""
               value={query}
+              placeholder="Search for keys, phones, bag, document..."
               onChange={(e)=> handleSearch(e.target.value)}
+           
               
               />
               <div className="relative flex pr-5 justify-end top-[-40px] down-20">

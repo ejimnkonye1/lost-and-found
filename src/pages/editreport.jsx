@@ -1,4 +1,5 @@
 import { Box, Typography, TextField,  Card, CardContent, List, ListItem, ListItemText, Divider, FormGroup, FormControlLabel, Checkbox, } from "@mui/material";
+import { SmallBox } from "../reuseables/box";
 
 
 export const EditReports = () => {
@@ -8,7 +9,7 @@ export const EditReports = () => {
            
            <div className="flex flex-col justify-center items-center lg:pt-[45px] lg:pr-[100px] lg:pl-[180px] py-5 p-5">
 
-    <Box display="flex" width="100%" p={2} bgcolor="#" minHeight="100vh">
+    <Box display="flex" flexDirection={{ xs: "column", lg: "row" }} width="100%" p={2} bgcolor="#" minHeight="100vh">
       {/* Sidebar */}
       <Box
         sx={{
@@ -40,6 +41,8 @@ export const EditReports = () => {
           </ListItem>
         </List>
       </Box>
+      {/* small screen */}
+      <SmallBox />
 
       {/* Main Content */}
       <Box flexGrow={1} bgcolor="#3F384A0D"

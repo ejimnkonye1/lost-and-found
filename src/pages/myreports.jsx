@@ -1,12 +1,13 @@
 import { Box, Typography, TextField,  Card, CardContent, List, ListItem, ListItemText, Divider, FormGroup, FormControlLabel, Checkbox, } from "@mui/material";
 import { Report } from "../component/reportarray";
+import { SmallBox } from "../reuseables/box";
 export const Myreport = () => {
     return(
         <div className='pt-20 z-10'>
            
-           <div className="flex flex-col justify-center items-center lg:pt-[45px] lg:pr-[100px] lg:pl-[180px] py-5 p-5">
+           <div className="flex flex-col justify-center items-center lg:pt-[45px] lg:pr-[100px] lg:pl-[180px] py-5 lg:p-5">
 
-    <Box display="flex" width="100%" p={2} bgcolor="#" minHeight="100vh">
+    <Box display="flex" flexDirection={{ xs: "column", lg: "row" }} width="100%" p={2} bgcolor="#" minHeight="100vh">
       {/* Sidebar */}
       <Box
         sx={{
@@ -39,6 +40,8 @@ export const Myreport = () => {
         </List>
       </Box>
 
+      {/* //small screens // */}
+    <SmallBox />
       {/* Main Content */}
       <Box flexGrow={1}
        bgcolor="#3F384A0D"
@@ -52,7 +55,7 @@ export const Myreport = () => {
         <Card variant="outlined" bgcolor='#3F384A0D' sx={{ mb: 3 }}>
           <CardContent className="bg-[#3F384A0D]">
    
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2  gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 lg:gap-4">
   {Report.map((report, id) => (
     <div key={id} className="flex flex-col bg-white border border-slate-200 rounded-lg shadow-md overflow-hidden">
       <img src={report.image} className="w-full h-48 object-cover" alt={report.name} />

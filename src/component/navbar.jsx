@@ -8,6 +8,7 @@ import {  LoginModal } from '../Modal/Loginmodal';
 import { RegitserModal } from '../Modal/regitsermodal';
 import { IoIosLogIn } from "react-icons/io";
 import { IoPersonAddOutline } from "react-icons/io5";
+import { Sidebar } from '../reuseables/sidebar';
 export const Navbar = () => {
       const [menuOpen, setMenuOpen] = useState(false);
       const [loginOpen, setLoginOpen] = useState(false);
@@ -67,11 +68,18 @@ export const Navbar = () => {
             )}
         </button>
        
-      
+      <>
+      {menuOpen && (
+        <Sidebar 
+        menuOpen={menuOpen}
+        setMenuOpen={setMenuOpen}
+        />
+      )}
+      </>
 
         <ul 
             className={`flex-col lg:flex-row items-center m-2 p-2 transition-all duration-300 flex justify-center 
-                ${menuOpen ? 'flex absolute top-0 left-0 w-full bg-[#457AD4] p-4 flex-col items-center z-20 shadow-lg rounded-lg' : 'hidden lg:flex flex justify-center '} 
+                ${menuOpen ? 'hidden lg:flex' : 'hidden lg:flex flex justify-center '} 
                 lg:static lg:bg-transparent lg:shadow-none`}
         >
             <li className={`${menuOpen ? 'mb-2' : ''}`}>
@@ -117,8 +125,8 @@ export const Navbar = () => {
     </nav>
 
     {/* Buttons Container */}
-    <ul className={`flex ml-auto lg:mr-20 ${menuOpen ? 'hidden' : 'hidden lg:flex'}`}>
-        <li className={`${menuOpen ? 'mb-3' : ''}`}>
+    <ul className={`flex ml-auto lg:mr-20 ${menuOpen ? 'hidden lg:flex' : 'hidden lg:flex'}`}>
+        <li className={`${menuOpen ? 'mb-3 lg:flex' : ''}`}>
             <a 
                 // href='/#'
                 onClick={toggleLogin}
@@ -147,7 +155,7 @@ export const Navbar = () => {
  </>
 
         </li>
-        <li className={` px-3${menuOpen ? 'mb-3' : ''}`}>
+        <li className={` px-3 ${menuOpen ? 'mb-3 ' : ''}`}>
             <a 
                 // href='/#'
                 onClick={toggleRegister}

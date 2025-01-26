@@ -6,7 +6,7 @@ export const SubmitReports = () => {
         <>
         <div className='pt-20 z-10'>
            
-           <div className="flex flex-col justify-center items-center lg:pt-[45px] pr-[100px] pl-[180px] py-5 p-5">
+           <div className="flex flex-col justify-center items-center lg:pt-[45px] lg:pr-[100px] lg:pl-[180px] py-5 p-5">
 
     <Box display="flex" width="100%" p={2} bgcolor="#" minHeight="100vh">
       {/* Sidebar */}
@@ -19,6 +19,7 @@ export const SubmitReports = () => {
           boxShadow: 3,
           mr: { lg: 2 },
           mb: { xs: 2, lg: 0 },
+          display: { xs: "none", lg: "block" },
         }}
         
       >
@@ -41,7 +42,9 @@ export const SubmitReports = () => {
       </Box>
 
       {/* Main Content */}
-      <Box flexGrow={1} bgcolor="#3F384A0D" borderRadius={2} p={3} boxShadow={3} >
+      <Box flexGrow={1}
+           width={{ xs: "100%", lg: "auto" }}
+       bgcolor="#3F384A0D" borderRadius={2} p={3} boxShadow={3} >
         <Typography variant="h5" fontWeight="bold" mb={3} className="lg:text-3xl font-poppins font-bold text-2xl text-start   text-gray-500 ">
           Create or Edit a Report
         </Typography>

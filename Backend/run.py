@@ -5,6 +5,8 @@ app = FastAPI()
 from app.routes.items import router as item_router
 
 # app.include_router(item_router, prefix='/api/item')
+app.include_router(item_router, prefix='/api')
+
 # Define a route for the root URL
 @app.get("/")
 async def read_root():

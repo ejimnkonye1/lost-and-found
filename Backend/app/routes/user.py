@@ -1,54 +1,100 @@
 from fastapi import APIRouter, Request, Depends,HTTPException,Cookie,Response
 import bcrypt
 router = APIRouter()
-from app import db
-from app.utilis import emailh
-users = db['users']
+from app.db import db
+from app.utilis.emailh import is_valid_email
 
-@router.get('/register', method=["POST"])
-async def register(request: Request):
-    data = request.get_json()
-    username = data.get('username')
+import uuid 
+users = db['users']
+sessions = db["sessions"] 
+
+@router.post('/register', )
+async def register(request: Request, response: Response):
+    
+    data = await request.json()
+    # print("Incoming Data:", data)
+    username = data.get('username').lower()
     email = data.get('email')
     password = data.get('password')
 
-    if not username or not email or not password:
-        return ({'error':'username , email and password is required'})
-
+    if not username:
+        raise HTTPException (status_code=400,  detail='username  is required')
     if not email:
-        return({
-            "error":'email cannot be empty'
-        })
-    if not emailh(email):
-        return({
-            "error":"invalid email format"
-        })
-    if email in users:
-        return({
-            "error":"email is already taken"
-        })
-    if username in user:
-        return({
-          'error':  'User name is already taken'
-        })
+        raise HTTPException(status_code=400, detail='email is required')
+    if not password:
+        raise HTTPException(status_code=400, detail='password cannot be empty')
+    if not is_valid_email(email):
+        raise HTTPException (status_code=400,
+            detail="invalid email format"
+        )
+    existing_email = await users.find_one({"email": email})
+    existing_user = await users.find_one({"username": username})
+    print("Query Result for username:", existing_email)
+    if existing_email:
+        raise HTTPException (status_code=400,
+           detail= "email is already taken"
+        )
+    if existing_user:
+        raise HTTPException (status_code=400,
+          detail= 'User name is already taken'
+        )
     if len(password) < 8:
-        return({'error':'password should be more 8 or more'})
-    salt = bcrypt.gensalt
-    hased_password =  bcrypt.hashpw(password,salt)
-    
-    users.insert_one({
+        raise HTTPException ( status_code=400, detail='Password should be 8 or more characters')
+    salt = bcrypt.gensalt()
+    # hashed_password =  bcrypt.hashpw(password.encode('utf8'),salt)
+    hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
+    new_user = {
         "username":username,
         "email": email,
-        "password": hased_password,
-    })
-    user = users.find_one({
-        'username':username
-    })
-    session_Id = str()
-    # session[session_Id] = user['usersname']
-    # session[session_Id] = user['email']
-    # session[session_Id] = user['password']
-    return({
-        "message": "Logged in successfully"
-    })
+        "password": hashed_password,
+    }
+    users.insert_one(new_user)
+    session_Id = str(uuid.uuid4())
+    response.set_cookie(key='session_id', value=session_Id, httponly=True, samesite="lax")
+       
+    return{
+        "message": "Registration  successfully"
+    }
 
+@router.post('/login')
+async def login(request: Request, response:Response):
+    data = await request.json()
+    # username = data.get('username').lower()
+    email = data.get('email')
+    password = data.get('password')
+
+    if  not email or not password:
+        raise HTTPException(status_code=400, detail='field must not be empty')
+    existing_email = await users.find_one({"email":email})
+  
+    if not existing_email  :
+        raise HTTPException(status_code=400, detail='invalid email or password')
+    check_password = bcrypt.checkpw(password.encode('utf-8'), existing_email['password'])
+
+    if not check_password :
+        raise HTTPException(status_code=400, detail="password is incorrect")
+     
+    session_Id = str(uuid.uuid4())
+    #store session
+    await sessions.insert_one({'session_Id':session_Id, "email":email})
+    response.set_cookie(key="session_id", value=session_Id, httponly=True, samesite='lax')
+
+    return{
+            "message":"Login succesfully"
+        }
+
+@router.post('/logout')
+async def logout(request: Request,response: Response):
+    session_Id = request.cookies.get("session_Id") 
+
+    if session_Id:
+        #remove from db
+        await sessions.delete_one({"session_Id":session_Id})
+        #clear browser
+        response.delete_cookie("session_Id")
+
+        return{
+            "message":'User Logged Out Successfully'
+        }
+    else:
+        raise HTTPException(status_code=400, detail='no session is active')

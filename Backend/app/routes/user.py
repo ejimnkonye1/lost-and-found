@@ -66,7 +66,7 @@ async def login(request: Request, response:Response):
     if  not email or not password:
         raise HTTPException(status_code=400, detail='field must not be empty')
     existing_email = await users.find_one({"email":email})
-  
+    
     if not existing_email  :
         raise HTTPException(status_code=400, detail='invalid email or password')
     check_password = bcrypt.checkpw(password.encode('utf-8'), existing_email['password'])
@@ -80,7 +80,9 @@ async def login(request: Request, response:Response):
     response.set_cookie(key="session_id", value=session_Id, httponly=True, samesite='lax')
 
     return{
-            "message":"Login succesfully"
+            "message":"Login succesfully",
+             "email": existing_email.get("email"),
+             "username": existing_email.get("username")
         }
 
 @router.post('/logout')
